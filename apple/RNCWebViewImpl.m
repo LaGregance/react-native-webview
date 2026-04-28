@@ -152,6 +152,7 @@ RCTAutoInsetsProtocol>
 #if defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && __IPHONE_OS_VERSION_MAX_ALLOWED >= 130000 /* __IPHONE_13_0 */
   BOOL _savedAutomaticallyAdjustsScrollIndicatorInsets;
 #endif
+  BOOL _pullToRefreshTriggered;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -519,6 +520,17 @@ RCTAutoInsetsProtocol>
     _webView = [[RNCWKWebView alloc] initWithFrame:self.bounds configuration: wkWebViewConfig];
     [self setBackgroundColor: _savedBackgroundColor];
 #if !TARGET_OS_OSX
+
+    [[NSNotificationCenter defaultCenter]
+             removeObserver:_webView
+             name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter]
+            removeObserver:_webView
+            name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter]
+            removeObserver:_webView
+            name:UIKeyboardWillChangeFrameNotification object:nil];
+
     _webView.menuItems = _menuItems;
     _webView.suppressMenuItems = _suppressMenuItems;
     _webView.scrollView.delegate = self;
@@ -1026,6 +1038,16 @@ RCTAutoInsetsProtocol>
 {
   scrollView.decelerationRate = _decelerationRate;
 }
+
+// UIScrollViewDelegate method
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+  if (_pullToRefreshTriggered) {
+    _pullToRefreshTriggered = NO;
+    [self reload];
+    [_refreshControl endRefreshing];
+  }
+}
 #endif // !TARGET_OS_OSX
 
 - (void)setUserAgent:(NSString*)userAgent
@@ -1046,6 +1068,12 @@ RCTAutoInsetsProtocol>
 // UIScrollViewDelegate method
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
+  // Cancel pull-to-refresh if user scrolled back up past the threshold
+  if (_pullToRefreshTriggered && scrollView.contentOffset.y >= 0) {
+    _pullToRefreshTriggered = NO;
+    [_refreshControl endRefreshing];
+  }
+
   // Don't allow scrolling the scrollView.
   if (!_scrollEnabled) {
     scrollView.bounds = _webView.bounds;
@@ -1511,6 +1539,12 @@ RCTAutoInsetsProtocol>
     }];
     _onLoadingError(event);
   }
+
+#if !TARGET_OS_OSX
+  if (_refreshControl && _refreshControl.isRefreshing) {
+    [_refreshControl endRefreshing];
+  }
+#endif
 }
 
 - (void)evaluateJS:(NSString *)js
@@ -1575,6 +1609,12 @@ didFinishNavigation:(WKNavigation *)navigation
   if (_onLoadingFinish) {
     _onLoadingFinish([self baseEvent]);
   }
+
+#if !TARGET_OS_OSX
+  if (_refreshControl && _refreshControl.isRefreshing) {
+    [_refreshControl endRefreshing];
+  }
+#endif
 }
 
 - (void)cookiesDidChangeInCookieStore:(WKHTTPCookieStore *)cookieStore
@@ -1635,8 +1675,7 @@ didFinishNavigation:(WKNavigation *)navigation
 
 - (void)pullToRefresh:(UIRefreshControl *)refreshControl
 {
-  [self reload];
-  [refreshControl endRefreshing];
+  _pullToRefreshTriggered = YES;
 }
 
 
