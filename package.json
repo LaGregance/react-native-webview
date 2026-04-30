@@ -11,7 +11,7 @@
     "Gregoire Taja <gregoire.taja@mobilyflow.com>"
   ],
   "license": "MIT",
-  "version": "13.16.1",
+  "version": "13.16.1-fork.1",
   "homepage": "https://github.com/LaGregance/react-native-webview#readme",
   "bugs": {
     "url": "https://github.com/LaGregance/react-native-webview/issues"
