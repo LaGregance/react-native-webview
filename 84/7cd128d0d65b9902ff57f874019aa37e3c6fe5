@@ -1,0 +1,27 @@
+android/build.gradle
+  s_a4415a0d913af5::t_5c019818fbae18 95
+android/src/main/java/com/reactnativecommunity/webview/RNCWebViewManager.kt
+  s_a4415a0d913af5::t_fc649edadc258d 669-673
+android/src/main/java/com/reactnativecommunity/webview/RNCWebViewWrapper.kt
+  s_a4415a0d913af5::t_79633a34a29eda 5,7,10,18-20,25-68,71-73,86-91
+docs/Reference.md
+  s_a4415a0d913af5::t_12c9fd72bec7de 1410,1412-1414
+src/WebViewTypes.ts
+  s_a4415a0d913af5::t_ab7f25d159292e 662-663
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "847cd128d0d65b9902ff57f874019aa37e3c6fe5",
+  "prompts": {},
+  "sessions": {
+    "s_a4415a0d913af5": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "aaf1286b-c44f-4b4e-b10b-6a5029fb6abf",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "LaGregance <gregoire.taja@gmail.com>"
+    }
+  }
+}
