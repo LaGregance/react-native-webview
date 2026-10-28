@@ -1,5 +1,19 @@
 # React Native WebView
 
+> [!NOTE]
+> This is a fork of [react-native-webview](https://github.com/react-native-webview/react-native-webview), published as [`@lagregance/react-native-webview`](https://www.npmjs.com/package/@lagregance/react-native-webview). It tracks upstream and ships the following fixes until they are merged:
+>
+> - **Android: `pullToRefreshEnabled` support** — [#4060](https://github.com/react-native-webview/react-native-webview/pull/4060), fixes [#3825](https://github.com/react-native-webview/react-native-webview/issues/3825) (supersedes [#3895](https://github.com/react-native-webview/react-native-webview/pull/3895)). Also handles pages with inner scrollable elements.
+> - **iOS: pull-to-refresh reloads on release** — [#4061](https://github.com/react-native-webview/react-native-webview/pull/4061), related to [#2407](https://github.com/react-native-webview/react-native-webview/issues/2407). Fixes the content jump caused by reloading while the user is still dragging.
+>
+> To use it as a drop-in replacement (keeping `import { WebView } from 'react-native-webview'`), alias it in your `package.json`:
+>
+> ```json
+> "react-native-webview": "npm:@lagregance/react-native-webview@16.0.0-fork.0",
+> ```
+>
+> Or install it under its own name with `yarn add @lagregance/react-native-webview` and import from `@lagregance/react-native-webview`.
+
 ![star this repo](https://img.shields.io/github/stars/react-native-webview/react-native-webview?style=flat-square)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 [![NPM Version](https://img.shields.io/npm/v/react-native-webview.svg?style=flat-square)](https://www.npmjs.com/package/react-native-webview)

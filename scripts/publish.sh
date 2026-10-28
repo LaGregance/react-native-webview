@@ -24,7 +24,7 @@ bun install --frozen-lockfile
 bun run lint
 bun run prepare
 
-npm publish
+npm publish "$@"
 
 git tag "v${VERSION}"
 git push origin "v${VERSION}"

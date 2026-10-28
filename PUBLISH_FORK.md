@@ -48,8 +48,14 @@ The script will:
 2. Verify you're logged in to npm.
 3. Print the package name + version and ask for confirmation.
 4. Run `bun install --frozen-lockfile`, `bun run lint`, then `bun run prepare` (emits `.d.ts` types and Babel-compiles `src/` → `lib/`).
-5. Run `npm publish`. The `publishConfig.access: public` field in `package.json` makes the scoped package public.
+5. Run `npm publish`, forwarding any argument given to the script. The `publishConfig.access: public` field in `package.json` makes the scoped package public.
 6. Create a `vX.Y.Z` git tag and push it to `origin`.
+
+Fork versions such as `16.0.0-fork.0` are semver prereleases (anything after `-`), so npm requires an explicit dist-tag:
+
+```sh
+bun run publish:npm --tag latest
+```
 
 ## Verifying without publishing
 
@@ -64,10 +70,20 @@ This prints every file that will be included and the final filename (`lagregance
 
 ## Consuming the package
 
-In another project:
+In another project, as a drop-in replacement for `react-native-webview` (no import change needed), alias it in `package.json`:
+
+```json
+"react-native-webview": "npm:@lagregance/react-native-webview@16.0.0-fork.0",
+```
+
+```ts
+import { WebView } from 'react-native-webview';
+```
+
+Or install it under its scoped name:
 
 ```sh
-yarn add @lagregance/react-native-webview
+bun add @lagregance/react-native-webview
 # then
 import { WebView } from '@lagregance/react-native-webview';
 ```
