@@ -1,0 +1,26 @@
+README.md
+  s_a4415a0d913af5::t_ccb789de08b1a8 3-8,16
+  s_a4415a0d913af5::t_1fb31a71012f1a 9-15
+PUBLISH_FORK.md
+  s_a4415a0d913af5::t_87e36a0611a0c2 51,54-58
+  s_a4415a0d913af5::t_49f5b76c198712 73-83,86
+  s_a4415a0d913af5::t_ef2844587b45db 59
+scripts/publish.sh
+  s_a4415a0d913af5::t_00514d792d2854 27
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "ad5b684f8ae1e104a00125672f7720eba15b07b4",
+  "prompts": {},
+  "sessions": {
+    "s_a4415a0d913af5": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "aaf1286b-c44f-4b4e-b10b-6a5029fb6abf",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "LaGregance <gregoire.taja@gmail.com>"
+    }
+  }
+}
