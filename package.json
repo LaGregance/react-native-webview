@@ -1,16 +1,20 @@
 {
-  "name": "react-native-webview",
-  "version": "16.0.0",
+  "name": "@lagregance/react-native-webview",
+  "version": "16.0.0-fork.0",
   "description": "React Native WebView component for iOS, Android, macOS, and Windows",
-  "homepage": "https://github.com/react-native-webview/react-native-webview#readme",
+  "homepage": "https://github.com/LaGregance/react-native-webview#readme",
+  "bugs": {
+    "url": "https://github.com/LaGregance/react-native-webview/issues"
+  },
   "license": "MIT",
   "author": "Jamon Holmgren <jamon@infinite.red>",
   "contributors": [
-    "Thibault Malbranche <malbranche.thibault@gmail.com>"
+    "Thibault Malbranche <malbranche.thibault@gmail.com>",
+    "Gregoire Taja <gregoire.taja@mobilyflow.com>"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/react-native-webview/react-native-webview.git"
+    "url": "https://github.com/LaGregance/react-native-webview.git"
   },
   "files": [
     "android/src",
@@ -30,6 +34,9 @@
   "main": "index.js",
   "typings": "index.d.ts",
   "react-native": "src/index.ts",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
@@ -47,6 +54,7 @@
     "build": "babel --extensions \".ts,.tsx\" --out-dir lib src",
     "prepare:types": "tsc --noEmit false --emitDeclarationOnly --declaration --rootDir src --outDir lib",
     "prepare": "bun run --bun prepare:types && bun run --bun build",
+    "publish:npm": "./scripts/publish.sh",
     "test:windows": "bun run jest --setupFiles=./jest-setups/jest.setup.js --runInBand",
     "add:macos": "bun add --no-save --ignore-scripts react-native@0.81.6 react-native-macos@0.81.8",
     "add:visionos": "bun add --no-save --ignore-scripts @callstack/react-native-visionos@0.79.6",
