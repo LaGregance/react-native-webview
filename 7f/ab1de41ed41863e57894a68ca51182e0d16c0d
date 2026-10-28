@@ -1,0 +1,34 @@
+PUBLISH_FORK.md
+  s_a4415a0d913af5::t_4470855b5d5542 42
+  s_a4415a0d913af5::t_41a1b6127603d3 19
+  s_a4415a0d913af5::t_b270a2924f9f6d 16
+  s_a4415a0d913af5::t_f9f0116bbae437 59
+  s_a4415a0d913af5::t_34613fa44cb49f 50
+  s_a4415a0d913af5::t_0c26413d6a7037 1-7,9-12,14-15,18,20-41,43-49,51-58,60-75
+  s_a4415a0d913af5::t_1f0cd69c6d4513 8,13,17
+package.json
+  s_a4415a0d913af5::t_053689a2f3fd2a 57
+  s_a4415a0d913af5::t_1f0cd69c6d4513 37-39
+  s_a4415a0d913af5::t_e426bd3849a518 2-3,5-8,12-13,17
+scripts/publish.sh
+  s_a4415a0d913af5::t_0c26413d6a7037 1-32
+react-native-webview.podspec
+  s_a4415a0d913af5::t_6d83c44e2d5ddd 6
+  s_a4415a0d913af5::t_dd11eda8d4c74b 15
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "7fab1de41ed41863e57894a68ca51182e0d16c0d",
+  "prompts": {},
+  "sessions": {
+    "s_a4415a0d913af5": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "aaf1286b-c44f-4b4e-b10b-6a5029fb6abf",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "LaGregance <gregoire.taja@gmail.com>"
+    }
+  }
+}
